@@ -1,7 +1,12 @@
 // Always use the proxy to avoid CORS issues
 // In development: Vite proxy handles it (/steam-api -> https://api.steampowered.com)
-// In production: Vercel Edge Function handles it (/api/steam-api)
-const STEAM_API_BASE = import.meta.env.DEV ? '/steam-api' : '/api/steam-api'
+// In production: Vercel Function handles it (/api/steam-proxy?path=...)
+const getApiUrl = (path: string) => {
+  if (import.meta.env.DEV) {
+    return `/steam-api${path}`
+  }
+  return `/api/steam-proxy?path=${encodeURIComponent(path)}`
+}
 
 export interface SteamAchievement {
   apiname: string
@@ -24,7 +29,8 @@ export async function fetchSteamAchievements(
   steamId: string,
   appId: string = '236850' // EU4 default
 ): Promise<SteamAchievement[]> {
-  const url = `${STEAM_API_BASE}/ISteamUserStats/GetPlayerAchievements/v1/?appid=${appId}&key=${apiKey}&steamid=${steamId}`
+  const path = `/ISteamUserStats/GetPlayerAchievements/v1/?appid=${appId}&key=${apiKey}&steamid=${steamId}`
+  const url = getApiUrl(path)
 
   try {
     const response = await fetch(url)
