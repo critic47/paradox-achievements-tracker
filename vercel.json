@@ -1,0 +1,19 @@
+{
+  "rewrites": [
+    {
+      "source": "/steam-api/:path*",
+      "destination": "https://api.steampowered.com/:path*"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/steam-api/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=300"
+        }
+      ]
+    }
+  ]
+}
