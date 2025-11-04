@@ -1,5 +1,7 @@
-// Use local proxy to avoid CORS issues in development
-const STEAM_API_BASE = import.meta.env.DEV ? '/steam-api' : 'https://api.steampowered.com'
+// Always use the proxy to avoid CORS issues
+// In development: Vite proxy handles it
+// In production: Vercel rewrites handle it
+const STEAM_API_BASE = '/steam-api'
 
 export interface SteamAchievement {
   apiname: string
