@@ -1,20 +1,3 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "rewrites": [
-    {
-      "source": "/steam-api/:path*",
-      "destination": "https://api.steampowered.com/:path*"
-    }
-  ],
-  "headers": [
-    {
-      "source": "/steam-api/:path*",
-      "headers": [
-        {
-          "key": "CDN-Cache-Control",
-          "value": "max-age=300"
-        }
-      ]
-    }
-  ]
+  "$schema": "https://openapi.vercel.sh/vercel.json"
 }

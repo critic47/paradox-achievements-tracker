@@ -1,7 +1,7 @@
 // Always use the proxy to avoid CORS issues
-// In development: Vite proxy handles it
-// In production: Vercel rewrites handle it
-const STEAM_API_BASE = '/steam-api'
+// In development: Vite proxy handles it (/steam-api -> https://api.steampowered.com)
+// In production: Vercel Edge Function handles it (/api/steam-api)
+const STEAM_API_BASE = import.meta.env.DEV ? '/steam-api' : '/api/steam-api'
 
 export interface SteamAchievement {
   apiname: string
