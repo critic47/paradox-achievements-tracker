@@ -1,8 +1,8 @@
 {
   "rewrites": [
     {
-      "source": "/steam-api/:path*",
-      "destination": "https://api.steampowered.com/:path*"
+      "source": "/steam-api/(.*)",
+      "destination": "https://api.steampowered.com/$1"
     }
   ],
   "headers": [
