@@ -1,17 +1,18 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
   "rewrites": [
     {
-      "source": "/steam-api/(.*)",
-      "destination": "https://api.steampowered.com/$1"
+      "source": "/steam-api/:path*",
+      "destination": "https://api.steampowered.com/:path*"
     }
   ],
   "headers": [
     {
-      "source": "/steam-api/(.*)",
+      "source": "/steam-api/:path*",
       "headers": [
         {
-          "key": "Cache-Control",
-          "value": "public, max-age=300"
+          "key": "CDN-Cache-Control",
+          "value": "max-age=300"
         }
       ]
     }
